@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170409042625) do
+ActiveRecord::Schema.define(version: 20170409053748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170409042625) do
     t.string   "league_link"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "country"
   end
 
   create_table "players", force: :cascade do |t|
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170409042625) do
     t.string   "nationality"
     t.decimal  "bp_latitude"
     t.decimal  "bp_longitude"
+    t.string   "pob_wiki_link"
   end
 
   add_foreign_key "clubs", "leagues"

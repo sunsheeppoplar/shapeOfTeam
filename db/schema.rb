@@ -10,17 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213010940) do
+ActiveRecord::Schema.define(version: 20170409042625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "clubs", force: :cascade do |t|
     t.string   "name"
-    t.string   "league_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "club_link"
+    t.integer  "league_id"
+    t.index ["league_id"], name: "index_clubs_on_league_id", using: :btree
+  end
+
+  create_table "leagues", force: :cascade do |t|
+    t.string   "name"
+    t.string   "league_link"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "club_link"
   end
 
   create_table "players", force: :cascade do |t|
@@ -36,4 +44,5 @@ ActiveRecord::Schema.define(version: 20170213010940) do
     t.decimal  "bp_longitude"
   end
 
+  add_foreign_key "clubs", "leagues"
 end
